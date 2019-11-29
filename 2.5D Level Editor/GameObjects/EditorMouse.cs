@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 
 
-class GameMouse : SpriteGameObject
+class GameMouse : GameObject
 {
     Vector2 mousePos;
     protected TextureType texturetype;
@@ -15,7 +15,7 @@ class GameMouse : SpriteGameObject
     string asset;
 
     public GameMouse()
-        : base ("Sprites/Menu/spr_mouse",200, "mouse")
+        : base (200, "mouse")
     {
         asset = "Sprites/Tiles/spr_grass_sheet_0@4x4";
         texturetype = TextureType.Grass;

@@ -21,7 +21,7 @@ class Game1 : GameEnvironment
     public Game1()
     {
         Content.RootDirectory = "Content";
-        IsMouseVisible = true;
+        IsMouseVisible = false;
     }
 
     protected override void LoadContent()
