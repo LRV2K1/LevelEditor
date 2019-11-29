@@ -1,0 +1,2 @@
+Sprites/Tiles/Trees/spr_tree_,wall,grass,treetile
+Sprites/Tiles/Trees/spr_deadtree_,wall,grass,treetile
