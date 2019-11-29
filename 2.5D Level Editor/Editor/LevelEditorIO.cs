@@ -52,8 +52,29 @@ partial class LevelEditer : GameObjectLibrary
         streamWriter.Close();
     }
 
-    public void Load()
+    public void Load(string path)
     {
+        Dictionary<char, string> tiletypeschar = new Dictionary<char, string>();
+        List<string> textLines = new List<string>();
+        StreamReader streamReader = new StreamReader(path);
 
+        string line = streamReader.ReadLine();
+        while (line != "")
+        {
+            string[] types = line.Split(':');
+            char[] a = types[0].ToCharArray();
+            tiletypeschar.Add(a[0], types[1]);
+            line = streamReader.ReadLine();
+        }
+
+        line = streamReader.ReadLine();
+        int width = line.Length;
+        while (line != null)
+        {
+            textLines.Add(line);
+            line = streamReader.ReadLine();
+        }
+
+        LoadTiles(textLines, width, tiletypeschar);
     }
 }

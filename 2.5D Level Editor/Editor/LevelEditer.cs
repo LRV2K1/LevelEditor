@@ -7,10 +7,20 @@ using System.Threading.Tasks;
 
 public partial class LevelEditer : GameObjectLibrary
 {
-    public LevelEditer()
+    public LevelEditer(int x, int y, bool load = false, string path = "")
         : base()
     {
-        EditorStartUp(20, 20);
+        if (!load)
+        {
+            NewLevel(x, y);
+        }
+        else
+        {
+            Load(path);
+        }
+
+        LoadOverlay();
+
         Reset();
     }
 }
