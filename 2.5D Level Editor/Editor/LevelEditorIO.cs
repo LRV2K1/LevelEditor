@@ -51,4 +51,9 @@ partial class LevelEditer : GameObjectLibrary
         }
         streamWriter.Close();
     }
+
+    public void Load()
+    {
+
+    }
 }
