@@ -21,7 +21,7 @@ class Game1 : GameEnvironment
     public Game1()
     {
         Content.RootDirectory = "Content";
-        IsMouseVisible = false;
+        IsMouseVisible = true;
     }
 
     protected override void LoadContent()
@@ -39,7 +39,8 @@ class Game1 : GameEnvironment
         physicscounter.Color = Color.Black;
 
         gameStateManager.AddGameState("editorState", new EditorState(Content));
-        gameStateManager.SwitchTo("editorState");
+        GameStateManager.AddGameState("selectionState", new SelectionState(Content));
+        gameStateManager.SwitchTo("selectionState");
     }
 
     protected override void Update(GameTime gameTime)

@@ -16,7 +16,16 @@ class EditorState : IGameLoopObject
     public EditorState(ContentManager content)
     {
         this.content = content;
-        LevelEditer = new LevelEditer(20, 20, true, "Content/1.txt");
+    }
+
+    public void NewLevel(int x, int y)
+    {
+        LevelEditer = new LevelEditer(x, y);
+    }
+
+    public void LoadLevel(string path)
+    {
+        LevelEditer = new LevelEditer(20, 20, true, path);
     }
 
     public virtual void HandleInput(InputHelper inputHelper)

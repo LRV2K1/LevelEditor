@@ -128,7 +128,6 @@ class Tile : SpriteGameObject
             }
         }
     }
-
     public TileType TileType
     {
         get { return type; }
@@ -166,7 +165,6 @@ class Tile : SpriteGameObject
     {
         sprite.SheetIndex = CalculateSurroundingTiles() % 16;
     }
-
     public virtual int CalculateSurroundingTiles()
     {
         LevelGrid levelGrid = GameWorld.GetObject("levelgrid") as LevelGrid;

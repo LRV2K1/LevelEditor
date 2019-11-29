@@ -62,7 +62,7 @@
     <Compile Include="Editor\LevelEditorLoop.cs" />
     <Compile Include="Editor\LevelEditorStartup.cs" />
     <Compile Include="GameObjects\LevelGrid.cs" />
-    <Compile Include="GameObjects\Mouse.cs" />
+    <Compile Include="GameObjects\EditorMouse.cs" />
     <Compile Include="GameObjects\Tiles\Tile.cs" />
     <Compile Include="GameObjects\Tiles\TreeTile.cs" />
     <Compile Include="GameObjects\Tiles\WallTile.cs" />
