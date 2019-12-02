@@ -61,6 +61,8 @@
     <Compile Include="Editor\LevelEditer.cs" />
     <Compile Include="Editor\LevelEditorLoop.cs" />
     <Compile Include="Editor\LevelEditorStartup.cs" />
+    <Compile Include="GameObjects\Entities\Entity.cs" />
+    <Compile Include="GameObjects\ItemGrid.cs" />
     <Compile Include="GameObjects\LevelGrid.cs" />
     <Compile Include="GameObjects\EditorMouse.cs" />
     <Compile Include="GameObjects\Tiles\Tile.cs" />
@@ -68,7 +70,9 @@
     <Compile Include="GameObjects\Tiles\WallTile.cs" />
     <Compile Include="Menu\Button.cs" />
     <Compile Include="Menu\TextButton.cs" />
-    <Compile Include="Overlay\Overlay.cs" />
+    <Compile Include="Overlay\EntityButton.cs" />
+    <Compile Include="Overlay\EntityOverlay.cs" />
+    <Compile Include="Overlay\TileOverlay.cs" />
     <Compile Include="Overlay\OverlayButton.cs" />
     <Compile Include="Overlay\OverlayStatus.cs" />
     <Compile Include="Overlay\TileButton.cs" />

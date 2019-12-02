@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using System.IO;
 using Microsoft.Xna.Framework;
 
-class Overlay : GameObjectList
+class TileOverlay : GameObjectList
 {
-    public Overlay(GameObjectLibrary gameworld, string path ,int layer = 101, string id = "")
+    public TileOverlay(GameObjectLibrary gameworld, string path ,int layer = 101, string id = "")
         : base(layer, id)
     {
         GameWorld = gameworld;

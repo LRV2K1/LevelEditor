@@ -14,6 +14,12 @@ partial class LevelEditer : GameObjectLibrary
         levelGrid.CellWidth = 108;
         levelGrid.CellHeight = 54;
         levelGrid.SetupGrid();
+
+        ItemGrid itemGrid = new ItemGrid(width, height, 1, "itemgrid");
+        RootList.Add(itemGrid);
+        itemGrid.CellWidth = 108;
+        itemGrid.CellHeight = 54;
+        itemGrid.SetupGrid();
     }
 
     private void LoadOverlay()
@@ -23,10 +29,10 @@ partial class LevelEditer : GameObjectLibrary
         OverlayStatus overlay = new OverlayStatus(this);
         RootList.Add(overlay);
 
-        overlay.AddStatus("Floor", new Overlay(this, "Content/Tiles/Floor.txt"));
-        overlay.AddStatus("Wall", new Overlay(this, "Content/Tiles/Wall.txt"));
-        overlay.AddStatus("Tree", new Overlay(this, "Content/Tiles/Tree.txt"));
-        overlay.AddStatus("Items", new Overlay(this, "Content/Tiles/Wall.txt"));
+        overlay.AddStatus("Floor", new TileOverlay(this, "Content/Tiles/Floor.txt"));
+        overlay.AddStatus("Wall", new TileOverlay(this, "Content/Tiles/Wall.txt"));
+        overlay.AddStatus("Tree", new TileOverlay(this, "Content/Tiles/Tree.txt"));
+        overlay.AddStatus("Items", new EntityOverlay(this, "Content/Entities/Item.txt"));
 
         LevelGrid levelGrid = GetObject("levelgrid") as LevelGrid;
         Camera camera = new Camera();
@@ -95,5 +101,50 @@ partial class LevelEditer : GameObjectLibrary
         }
 
         return new Tile(new Point(x, y));
+    }
+
+    private void LoadEntities(List<string> textlines, int width, Dictionary<char, string> entitytypechar)
+    {
+        ItemGrid itemGrid = new ItemGrid(width, textlines.Count, 0, "itemgrid");
+        RootList.Add(itemGrid);
+        itemGrid.CellWidth = 108;
+        itemGrid.CellHeight = 54;
+
+        for (int x = 0; x < width; x++)
+        {
+            for (int y = 0; y < textlines.Count; y++)
+            {
+                Entity t = LoadEntity(x, y, entitytypechar[textlines[y][x]]);
+                itemGrid.Add(t, x, y);
+            }
+        }
+    }
+
+    private Entity LoadEntity(int x, int y, string entitytype)
+    {
+        string[] type = entitytype.Split(',');
+        if (type[0] == "None")
+        {
+            return new Entity(new Point(x, y));
+        }
+
+        string asset = type[0];
+        int boundingy = int.Parse(type[1]);
+        EntityType et = EntityType.Item;
+
+        switch (type[2])
+        {
+            case "Item":
+                et = EntityType.Item;
+                break;
+            case "None":
+                et = EntityType.None;
+                break;
+            case "Player":
+                et = EntityType.Player;
+                break;
+        }
+
+        return new Entity(new Point(x, y), asset,boundingy, et);
     }
 }

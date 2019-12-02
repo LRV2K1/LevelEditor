@@ -12,15 +12,22 @@ class GameMouse : GameObject
     protected TextureType texturetype;
     protected TileType tiletype;
     protected TileObject tileobject;
+    protected EntityType entitytype;
+    protected bool item, tile;
     string asset;
+    int entityBoundingBox;
 
     public GameMouse()
         : base (200, "mouse")
     {
-        asset = "Sprites/Tiles/spr_grass_sheet_0@4x4";
+        item = false;
+        tile = false;
+        asset = "";
+        entityBoundingBox = 0;
         texturetype = TextureType.Grass;
         tiletype = TileType.Floor;
         tileobject = TileObject.Tile;
+        entitytype = EntityType.None;
     }
 
     public override void HandleInput(InputHelper inputHelper)
@@ -32,12 +39,22 @@ class GameMouse : GameObject
 
         if (inputHelper.MouseLeftButtonPressed() && position.X > 200 && position.Y < 830)
         {
-            SwitchTile();
+            if (tile)
+            {
+                SwitchTile();
+            }
+            else if (item)
+            {
+                SwitchItem();
+            }
         }
 
         if(inputHelper.MouseLeftButtonDown() && position.X > 200 && position.Y < 830 && tileobject == TileObject.Tile)
         {
-            SwitchTile();
+            if (tile)
+            {
+                SwitchTile();
+            }
         }
     }
 
@@ -45,6 +62,12 @@ class GameMouse : GameObject
     {
         LevelGrid level = GameWorld.GetObject("levelgrid") as LevelGrid;
         level.SwitchTile(mousePos, tiletype, texturetype, tileobject, asset);
+    }
+
+    private void SwitchItem()
+    {
+        ItemGrid itemGrid = GameWorld.GetObject("itemgrid") as ItemGrid;
+        itemGrid.SwitchItem(mousePos, entitytype, asset, entityBoundingBox);
     }
 
     public Vector2 MousePos
@@ -74,6 +97,34 @@ class GameMouse : GameObject
     {
         get { return tileobject; }
         set { tileobject = value; }
+    }
+
+    public EntityType EntityType
+    {
+        get { return entitytype; }
+        set { entitytype = value; }
+    }
+
+    public int EntityBoundingy
+    {
+        get { return entityBoundingBox; }
+        set { entityBoundingBox = value; }
+    }
+
+    public bool Tile
+    {
+        get { return tile; }
+        set { tile = value;
+            item = !tile;
+        }
+    }
+
+    public bool Item
+    {
+        get { return item; }
+        set { item = value;
+            tile = !item;
+        }
     }
 }
 

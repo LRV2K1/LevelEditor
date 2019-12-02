@@ -5,20 +5,18 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-class TileButton : Button
+class EntityButton : Button
 {
-    protected TileType tiletype;
-    protected TextureType texturetype;
-    protected TileObject tileobject;
+    protected EntityType entitytype;
     protected string asset;
-    public TileButton (string assetname, TileType tp, TextureType tt, TileObject to)
+    protected int boundingy;
+    public EntityButton(string assetname, int boundingy, EntityType et)
         : base(assetname)
     {
         sprite.SheetIndex = 0;
+        this.boundingy = boundingy;
         asset = assetname;
-        tiletype = tp;
-        texturetype = tt;
-        tileobject = to;
+        entitytype = et;
     }
 
     public override void HandleInput(InputHelper inputHelper)
@@ -28,10 +26,9 @@ class TileButton : Button
         {
             GameMouse mouse = GameWorld.GetObject("mouse") as GameMouse;
             mouse.Asset = asset;
-            mouse.TileType = tiletype;
-            mouse.TextureType = texturetype;
-            mouse.TileObject = tileobject;
-            mouse.Tile = true;
+            mouse.EntityBoundingy = boundingy;
+            mouse.EntityType = entitytype;
+            mouse.Item = true;
         }
     }
 }

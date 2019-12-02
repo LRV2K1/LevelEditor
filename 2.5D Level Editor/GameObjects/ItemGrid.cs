@@ -5,13 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System.IO;
 
-class LevelGrid : GameObjectGrid
+class ItemGrid : GameObjectGrid
 {
-    public LevelGrid(int collumns, int rows, int layer = 0, string id = "")
+    public  ItemGrid(int collumns, int rows, int layer = 0, string id = "")
         : base(collumns, rows, layer, id)
     {
+
     }
 
     public void SetupGrid()
@@ -20,8 +20,8 @@ class LevelGrid : GameObjectGrid
         {
             for (int y = 0; y < Rows; y++)
             {
-                Tile tile = new Tile(new Point(x, y), "Sprites/Tiles/spr_grass_sheet_0@4x4", TileType.Floor, TextureType.Grass);
-                Add(tile, x, y);
+                Entity entity = new Entity(new Point(x, y), "");
+                Add(entity, x, y);
             }
         }
     }
@@ -34,39 +34,18 @@ class LevelGrid : GameObjectGrid
         obj.Position = AnchorPosition(x, y);
     }
 
-    public void SwitchTile(Vector2 mousepos, TileType tp, TextureType tt, TileObject to, string asset)
+    public void SwitchItem(Vector2 mousepos, EntityType et, string asset, int boundingy = 0)
     {
         Vector2 vpos = GridPosition(mousepos + new Vector2(0, cellHeight / 2));
         Point pos = new Point((int)vpos.X, (int)vpos.Y);
-        Tile tile = Get(pos.X, pos.Y) as Tile;
-        if (tile != null)
+        Entity entity = Get(pos.X, pos.Y) as Entity;
+        if (entity != null)
         {
-            if (tile.TileObject == to)
-            {
-                tile.ChangeTile(tp, tt, asset);
-            }
-            else
-            {
-                Remove(tile.Id, pos.X, pos.Y);
-                Tile newtile;
-                switch (to)
-                {
-                    case TileObject.Tile:
-                        newtile = new Tile(pos,asset, tp, tt);
-                        break;
-                    case TileObject.WallTile:
-                        newtile = new WallTile(pos, asset, tp, tt);
-                        break;
-                    case TileObject.TreeTile:
-                        newtile = new TreeTile(pos, asset, tp, tt);
-                        break;
-                    default:
-                        newtile = new Tile(pos);
-                        break;
-                }
-                Add(newtile, pos.X, pos.Y);
-                newtile.ChangeTile(tp, tt, asset);
-            }
+            Remove(entity.Id, pos.X, pos.Y);
+            Entity newentity;
+            newentity = new Entity(pos, asset, boundingy, et);
+            Add(newentity, pos.X, pos.Y);
+            newentity.InitializeTile();
         }
     }
 
@@ -84,53 +63,39 @@ class LevelGrid : GameObjectGrid
         return current.TileType;
     }
 
-    public TextureType GetTextureType(int x, int y)
-    {
-        if (x < 0 || x >= Columns)
-        {
-            return TextureType.None;
-        }
-        if (y < 0 || y >= Rows)
-        {
-            return TextureType.None;
-        }
-        Tile current = GameWorld.GetObject(Grid[x, y]) as Tile;
-        return current.TextureType;
-    }
-
     public override void HandleInput(InputHelper inputHelper)
     {
-        List<string> tiles = ActiveTiles();
-        for (int i = 0; i < tiles.Count; i++)
+        List<string> entities = ActiveEntites();
+        for (int i = 0; i < entities.Count; i++)
         {
-            Tile tile = GameWorld.GetObject(tiles[i]) as Tile;
-            tile.HandleInput(inputHelper);
+            Entity entity = GameWorld.GetObject(entities[i]) as Entity;
+            entity.HandleInput(inputHelper);
         }
     }
 
     public override void Update(GameTime gameTime)
     {
-        List<string> tiles = ActiveTiles();
-        for (int i = 0; i < tiles.Count; i++)
+        List<string> entities = ActiveEntites();
+        for (int i = 0; i < entities.Count; i++)
         {
-            Tile tile = GameWorld.GetObject(tiles[i]) as Tile;
-            tile.Update(gameTime);
+            Entity entity = GameWorld.GetObject(entities[i]) as Entity;
+            entity.Update(gameTime);
         }
     }
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
-        List<string> tiles = ActiveTiles();
-        for (int i = 0; i < tiles.Count; i++)
+        List<string> entities = ActiveEntites();
+        for (int i = 0; i < entities.Count; i++)
         {
-            Tile tile = GameWorld.GetObject(tiles[i]) as Tile;
-            tile.Draw(gameTime, spriteBatch);
+            Entity entity = GameWorld.GetObject(entities[i]) as Entity;
+            entity.Draw(gameTime, spriteBatch);
         }
     }
 
-    private List<string> ActiveTiles()
+    private List<string> ActiveEntites()
     {
-        List<string> tiles = new List<string>();
+        List<string> entities = new List<string>();
         Camera camera = GameWorld.GetObject("camera") as Camera;
         Vector2 cameraposbegin = GridPosition(new Vector2(camera.Screen.X, camera.Screen.Y));
         Vector2 cameraposend = GridPosition(new Vector2(camera.Screen.X + camera.Screen.Width, camera.Screen.Y + camera.Screen.Height));
@@ -146,10 +111,10 @@ class LevelGrid : GameObjectGrid
                 {
                     continue;
                 }
-                tiles.Add(grid[x, y]);
+                entities.Add(grid[x, y]);
             }
         }
-        return tiles;
+        return entities;
     }
 
     public Vector2 AnchorPosition(int x, int y)
