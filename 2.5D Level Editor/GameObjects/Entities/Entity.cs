@@ -10,7 +10,8 @@ enum EntityType
 {
     None,
     Item,
-    Player
+    Player,
+    Enemy
 }
 
 class Entity : SpriteGameObject

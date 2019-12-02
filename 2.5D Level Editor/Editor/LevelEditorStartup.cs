@@ -33,6 +33,7 @@ partial class LevelEditer : GameObjectLibrary
         overlay.AddStatus("Wall", new TileOverlay(this, "Content/Tiles/Wall.txt"));
         overlay.AddStatus("Tree", new TileOverlay(this, "Content/Tiles/Tree.txt"));
         overlay.AddStatus("Items", new EntityOverlay(this, "Content/Entities/Item.txt"));
+        overlay.AddStatus("Spawn", new EntityOverlay(this, "Content/Entities/Spawn.txt"));
 
         LevelGrid levelGrid = GetObject("levelgrid") as LevelGrid;
         Camera camera = new Camera();
@@ -142,6 +143,9 @@ partial class LevelEditer : GameObjectLibrary
                 break;
             case "Player":
                 et = EntityType.Player;
+                break;
+            case "Enemy":
+                et = EntityType.Enemy;
                 break;
         }
 

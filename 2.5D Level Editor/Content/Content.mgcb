@@ -16,6 +16,9 @@
 #begin Entities/Item.txt
 /copy:Entities/Item.txt
 
+#begin Entities/Spawn.txt
+/copy:Entities/Spawn.txt
+
 #begin Fonts/Hud.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor

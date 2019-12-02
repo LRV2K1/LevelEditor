@@ -53,6 +53,9 @@ class EntityOverlay : GameObjectList
             case "player":
                 et = EntityType.Player;
                 break;
+            case "enemy":
+                et = EntityType.Enemy;
+                break;
         }
 
         EntityButton button = new EntityButton(asset, boundingy, et);
