@@ -25,7 +25,7 @@ class EditorState : IGameLoopObject
 
     public void LoadLevel(string path)
     {
-        LevelEditer = new LevelEditer(20, 20, true, path);
+        LevelEditer = new LevelEditer(0, 0, true, path);
     }
 
     public virtual void HandleInput(InputHelper inputHelper)

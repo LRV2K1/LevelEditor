@@ -1,3 +1,3 @@
-Sprites/Items/spr_barrel,25,item
+Sprites/Items/spr_barrel,30,item
 Sprites/Items/spr_bucket,20,item
 Sprites/Items/spr_campfire@1x4,20,item
