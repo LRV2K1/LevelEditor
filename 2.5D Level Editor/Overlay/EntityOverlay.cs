@@ -47,8 +47,11 @@ class EntityOverlay : GameObjectList
             case "none":
                 et = EntityType.None;
                 break;
-            case "item":
-                et = EntityType.Item;
+            case "spriteitem":
+                et = EntityType.SpriteItem;
+                break;
+            case "animateditem":
+                et = EntityType.AnimatedItem;
                 break;
             case "player":
                 et = EntityType.Player;

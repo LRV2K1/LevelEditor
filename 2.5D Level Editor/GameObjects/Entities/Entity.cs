@@ -9,7 +9,8 @@ using Microsoft.Xna.Framework.Graphics;
 enum EntityType
 {
     None,
-    Item,
+    SpriteItem,
+    AnimatedItem,
     Player,
     Enemy
 }

@@ -131,12 +131,12 @@ partial class LevelEditer : GameObjectLibrary
 
         string asset = type[0];
         int boundingy = int.Parse(type[1]);
-        EntityType et = EntityType.Item;
+        EntityType et = EntityType.SpriteItem;
 
         switch (type[2])
         {
             case "Item":
-                et = EntityType.Item;
+                et = EntityType.SpriteItem;
                 break;
             case "None":
                 et = EntityType.None;
