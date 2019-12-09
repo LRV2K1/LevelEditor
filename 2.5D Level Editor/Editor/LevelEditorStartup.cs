@@ -62,34 +62,8 @@ partial class LevelEditer : GameObjectLibrary
     {
         string[] type = tiletype.Split(',');
         string asset = type[0];
-        TileType tp = TileType.Background;
-        TextureType tt = TextureType.None;
-
-        switch (type[1])
-        {
-            case "Floor":
-                tp = TileType.Floor;
-                break;
-            case "Background":
-                tp = TileType.Background;
-                break;
-            case "Wall":
-                tp = TileType.Wall;
-                break;
-        }
-
-        switch (type[2])
-        {
-            case "None":
-                tt = TextureType.None;
-                break;
-            case "Grass":
-                tt = TextureType.Grass;
-                break;
-            case "Water":
-                tt = TextureType.Water;
-                break;
-        }
+        TileType tp = (TileType)Enum.Parse(typeof(TileType), type[1]);
+        TextureType tt = (TextureType)Enum.Parse(typeof(TextureType), type[2]);
 
         switch (type[3])
         {
@@ -131,24 +105,12 @@ partial class LevelEditer : GameObjectLibrary
 
         string asset = type[0];
         int boundingy = int.Parse(type[1]);
-        EntityType et = EntityType.SpriteItem;
-
-        switch (type[2])
+        EntityType et = (EntityType)Enum.Parse(typeof(EntityType), type[2]);
+        Entity entity = new Entity(new Point(x, y), asset, boundingy, et);
+        if (et == EntityType.Enemy)
         {
-            case "Item":
-                et = EntityType.SpriteItem;
-                break;
-            case "None":
-                et = EntityType.None;
-                break;
-            case "Player":
-                et = EntityType.Player;
-                break;
-            case "Enemy":
-                et = EntityType.Enemy;
-                break;
+            entity.EnemyType = (EnemyType)Enum.Parse(typeof(EnemyType), type[3]);
         }
-
-        return new Entity(new Point(x, y), asset,boundingy, et);
+        return entity;
     }
 }

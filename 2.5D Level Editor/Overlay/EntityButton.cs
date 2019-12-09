@@ -39,6 +39,6 @@ class EntityButton : Button
 
     public EnemyType EnemyType
     {
-        set { EnemyType = value; }
+        set { enemytype = value; }
     }
 }

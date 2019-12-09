@@ -17,12 +17,14 @@ enum EntityType
 
 enum EnemyType
 {
-    Normal
+    Close,
+    Ranged
 }
 
 class Entity : SpriteGameObject
 {
     protected EntityType type;
+    protected EnemyType enemy;
     protected Point grid;
     protected int boundingy;
 
@@ -38,6 +40,12 @@ class Entity : SpriteGameObject
     {
         get { return type; }
         set { type = value; }
+    }
+
+    public EnemyType EnemyType
+    {
+        get { return enemy; }
+        set { enemy = value; }
     }
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)

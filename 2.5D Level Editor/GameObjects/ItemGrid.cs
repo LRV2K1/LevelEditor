@@ -42,8 +42,12 @@ class ItemGrid : GameObjectGrid
         if (entity != null)
         {
             Remove(entity.Id, pos.X, pos.Y);
-            Entity newentity;
-            newentity = new Entity(pos, asset, boundingy, et);
+            Entity newentity = new Entity(pos, asset, boundingy, et);
+            if (et == EntityType.Enemy)
+            {
+                GameMouse mouse = GameWorld.GetObject("mouse") as GameMouse;
+                newentity.EnemyType = mouse.EnemyType;
+            }
             Add(newentity, pos.X, pos.Y);
             newentity.InitializeTile();
         }
