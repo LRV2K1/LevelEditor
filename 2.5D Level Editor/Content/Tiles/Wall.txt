@@ -1,2 +1,2 @@
-Sprites/Tiles/spr_brick_wall_sheet_1@4x4,wall,grass,walltile
-Sprites/Tiles/spr_cave_wall_sheet_1@4x4,wall,grass,walltile
+Sprites/Tiles/spr_brick_wall_sheet_1@4x4,Wall,Grass,WallTile
+Sprites/Tiles/spr_cave_wall_sheet_1@4x4,Wall,Grass,WallTile

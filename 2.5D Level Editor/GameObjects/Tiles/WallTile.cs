@@ -37,6 +37,7 @@ class WallTile : Tile
     {
         LevelGrid levelGrid = GameWorld.GetObject("levelgrid") as LevelGrid;
         int i = 0;
+
         if (levelGrid.GetTileType(grid.X, grid.Y - 1) == TileType.Wall && levelGrid.GetTextureType(grid.X, grid.Y - 1) == this.texturetype)
         {
             i += 1;
@@ -71,6 +72,7 @@ class WallTile : Tile
             i += 128;
         }
         return i;
+        
     }
 
 }

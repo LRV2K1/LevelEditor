@@ -33,35 +33,21 @@ class EntityOverlay : GameObjectList
     {
         string[] type = line.Split(',');
 
-        if (type.Length != 3)
+        if (type.Length < 3)
         {
             return;
         }
 
         string asset = type[0];
         int boundingy = int.Parse(type[1]);
-        EntityType et = EntityType.None;
-
-        switch (type[2])
-        {
-            case "none":
-                et = EntityType.None;
-                break;
-            case "spriteitem":
-                et = EntityType.SpriteItem;
-                break;
-            case "animateditem":
-                et = EntityType.AnimatedItem;
-                break;
-            case "player":
-                et = EntityType.Player;
-                break;
-            case "enemy":
-                et = EntityType.Enemy;
-                break;
-        }
+        EntityType et = (EntityType) Enum.Parse(typeof(EntityType), type[2]);
 
         EntityButton button = new EntityButton(asset, boundingy, et);
+        if (et == EntityType.Enemy)
+        {
+            button.EnemyType = (EnemyType)Enum.Parse(typeof(EnemyType), type[3]);
+        }
+
         button.Position = new Vector2(x, 10);
         Add(button);
     }

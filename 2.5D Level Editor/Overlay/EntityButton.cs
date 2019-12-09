@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 class EntityButton : Button
 {
     protected EntityType entitytype;
+    protected EnemyType enemytype;
     protected string asset;
     protected int boundingy;
     public EntityButton(string assetname, int boundingy, EntityType et)
@@ -29,6 +30,15 @@ class EntityButton : Button
             mouse.EntityBoundingy = boundingy;
             mouse.EntityType = entitytype;
             mouse.Item = true;
+            if (entitytype == EntityType.Enemy)
+            {
+                mouse.EnemyType = enemytype;
+            }
         }
+    }
+
+    public EnemyType EnemyType
+    {
+        set { EnemyType = value; }
     }
 }

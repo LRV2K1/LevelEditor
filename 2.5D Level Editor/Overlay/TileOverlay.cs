@@ -39,48 +39,9 @@ class TileOverlay : GameObjectList
         }
 
         string asset = type[0];
-        TileType tp = TileType.Background;
-        TextureType tt = TextureType.None;
-        TileObject to = TileObject.Tile;
-
-        switch (type[1])
-        {
-            case "floor":
-                tp = TileType.Floor;
-                break;
-            case "background":
-                tp = TileType.Background;
-                break;
-            case "wall":
-                tp = TileType.Wall;
-                break;
-        }
-
-        switch (type[2])
-        {
-            case "none":
-                tt = TextureType.None;
-                break;
-            case "grass":
-                tt = TextureType.Grass;
-                break;
-            case "water":
-                tt = TextureType.Water;
-                break;
-        }
-
-        switch (type[3])
-        {
-            case "tile":
-                to = TileObject.Tile;
-                break;
-            case "walltile":
-                to = TileObject.WallTile;
-                break;
-            case "treetile":
-                to = TileObject.TreeTile;
-                break;
-        }
+        TileType tp = (TileType) Enum.Parse(typeof(TileType), type[1]);
+        TextureType tt = (TextureType)Enum.Parse(typeof(TextureType), type[2]);
+        TileObject to = (TileObject)Enum.Parse(typeof(TileObject), type[3]);
 
         TileButton button = new TileButton(asset, tp, tt, to);
         button.Position = new Vector2(x, 10);

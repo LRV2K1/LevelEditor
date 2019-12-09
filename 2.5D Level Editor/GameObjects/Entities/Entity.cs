@@ -15,6 +15,11 @@ enum EntityType
     Enemy
 }
 
+enum EnemyType
+{
+    Normal
+}
+
 class Entity : SpriteGameObject
 {
     protected EntityType type;
@@ -33,6 +38,15 @@ class Entity : SpriteGameObject
     {
         get { return type; }
         set { type = value; }
+    }
+
+    public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+    {
+        if (type == EntityType.None)
+        {
+            return;
+        }
+        base.Draw(gameTime, spriteBatch);
     }
 
     public override void Reset()
