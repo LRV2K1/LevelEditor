@@ -13,6 +13,13 @@ class TreeTile : Tile
         tileobject = TileObject.TreeTile;
     }
 
+    public override void InitializeTile()
+    {
+        base.InitializeTile();
+        LevelGrid levelGrid = GameWorld.GetObject("levelgrid") as LevelGrid;
+        origin = new Vector2(Width / 2, Height - levelGrid.CellHeight / 2);
+    }
+
     public override void ChangeTile(TileType tp, TextureType tt, string assetName = "")
     {
         sprite = null;

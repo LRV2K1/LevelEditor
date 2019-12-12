@@ -92,55 +92,73 @@ class Tile : SpriteGameObject
             return;
         }
 
-        LevelGrid levelGrid = GameWorld.GetObject("levelgrid") as LevelGrid;
-
-        origin = new Vector2(Width / 2, sprite.Height - levelGrid.CellHeight / 2);
+        origin = new Vector2(Width/2, sprite.Height / 2);
 
         SetSprite();
     }
 
     public virtual void SetSprite()
     {
-        sprite.SheetIndex = CalculateSurroundingTiles() % 16;
+        int r = CalculateSurroundingStraightTiles();
+        int s = CalculateSurroundingSideTiles();
+        if (r != 0)
+        {
+            sprite.SheetIndex = r % 16;
+        }
+        else
+        {
+            sprite.SheetIndex = s % 16 + 16;
+        }
+
     }
-    public virtual int CalculateSurroundingTiles()
+    public virtual int CalculateSurroundingStraightTiles()
     {
+
         LevelGrid levelGrid = GameWorld.GetObject("levelgrid") as LevelGrid;
-        int i = 0;
+        //regt
+        int r = 0;
         if (levelGrid.GetTextureType(grid.X, grid.Y - 1) != TextureType.None && levelGrid.GetTextureType(grid.X, grid.Y - 1) != texturetype)
         {
-            i += 1;
+            r += 1;
         }
         if (levelGrid.GetTextureType(grid.X + 1, grid.Y) != TextureType.None && levelGrid.GetTextureType(grid.X + 1, grid.Y) != texturetype)
         {
-            i += 2;
+            r += 2;
         }
         if (levelGrid.GetTextureType(grid.X, grid.Y + 1) != TextureType.None && levelGrid.GetTextureType(grid.X, grid.Y + 1) != texturetype)
         {
-            i += 4;
+            r += 4;
         }
         if (levelGrid.GetTextureType(grid.X - 1, grid.Y) != TextureType.None && levelGrid.GetTextureType(grid.X - 1, grid.Y) != texturetype)
         {
-            i += 8;
+            r += 8;
         }
-
-        if (levelGrid.GetTextureType(grid.X + 1, grid.Y - 1) != TextureType.None && levelGrid.GetTextureType(grid.X, grid.Y - 1) != texturetype)
-        {
-            i += 16;
-        }
-        if (levelGrid.GetTextureType(grid.X + 1, grid.Y + 1) != TextureType.None && levelGrid.GetTextureType(grid.X + 1, grid.Y) != texturetype)
-        {
-            i += 32;
-        }
-        if (levelGrid.GetTextureType(grid.X - 1, grid.Y + 1) != TextureType.None && levelGrid.GetTextureType(grid.X, grid.Y + 1) != texturetype)
-        {
-            i += 64;
-        }
-        if (levelGrid.GetTextureType(grid.X - 1, grid.Y - 1) != TextureType.None && levelGrid.GetTextureType(grid.X - 1, grid.Y) != texturetype)
-        {
-            i += 128;
-        }
-        return i;
+        return r;
     }
+
+    public virtual int CalculateSurroundingSideTiles()
+    {
+        LevelGrid levelGrid = GameWorld.GetObject("levelgrid") as LevelGrid;
+        //schuin
+        int s = 0;
+        if (levelGrid.GetTextureType(grid.X + 1, grid.Y - 1) != TextureType.None && levelGrid.GetTextureType(grid.X + 1, grid.Y - 1) != texturetype)
+        {
+            s += 1;
+        }
+        if (levelGrid.GetTextureType(grid.X + 1, grid.Y + 1) != TextureType.None && levelGrid.GetTextureType(grid.X + 1, grid.Y + 1) != texturetype)
+        {
+            s += 2;
+        }
+        if (levelGrid.GetTextureType(grid.X - 1, grid.Y + 1) != TextureType.None && levelGrid.GetTextureType(grid.X - 1, grid.Y + 1) != texturetype)
+        {
+            s += 4;
+        }
+        if (levelGrid.GetTextureType(grid.X - 1, grid.Y - 1) != TextureType.None && levelGrid.GetTextureType(grid.X - 1, grid.Y - 1) != texturetype)
+        {
+            s += 8;
+        }
+        return s;
+    }
+
 }
 

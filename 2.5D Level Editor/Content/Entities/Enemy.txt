@@ -1,0 +1,2 @@
+Sprites/Enemy/spr_enemy_0@4,60,Enemy,Close
+Sprites/Enemy/spr_enemy_1@4,45,Enemy,Close

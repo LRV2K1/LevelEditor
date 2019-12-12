@@ -21,10 +21,17 @@ enum EnemyType
     Ranged
 }
 
+enum ItemType
+{
+    InMovible,
+    Movible
+}
+
 class Entity : SpriteGameObject
 {
     protected EntityType type;
     protected EnemyType enemy;
+    protected ItemType item;
     protected Point grid;
     protected int boundingy;
 
@@ -46,6 +53,12 @@ class Entity : SpriteGameObject
     {
         get { return enemy; }
         set { enemy = value; }
+    }
+
+    public ItemType ItemType
+    {
+        get { return item; }
+        set { item = value; }
     }
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)

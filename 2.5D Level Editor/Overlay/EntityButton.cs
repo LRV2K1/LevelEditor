@@ -9,6 +9,7 @@ class EntityButton : Button
 {
     protected EntityType entitytype;
     protected EnemyType enemytype;
+    protected ItemType itemtype;
     protected string asset;
     protected int boundingy;
     public EntityButton(string assetname, int boundingy, EntityType et)
@@ -34,11 +35,20 @@ class EntityButton : Button
             {
                 mouse.EnemyType = enemytype;
             }
+            else if (entitytype == EntityType.AnimatedItem || entitytype == EntityType.SpriteItem)
+            {
+                mouse.ItemType = itemtype;
+            }
         }
     }
 
     public EnemyType EnemyType
     {
         set { enemytype = value; }
+    }
+
+    public ItemType ItemType
+    {
+        set { itemtype = value; }
     }
 }

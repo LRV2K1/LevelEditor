@@ -82,6 +82,10 @@ partial class LevelEditer : GameObjectLibrary
                 {
                     entitytype += "," + entity.EnemyType.ToString();
                 }
+                else if (entity.EntityType == EntityType.AnimatedItem || entity.EntityType == EntityType.SpriteItem)
+                {
+                    entitytype += "," + entity.ItemType.ToString();
+                }
                 
                 if (!entitytypechar.ContainsKey(entitytype))
                 {

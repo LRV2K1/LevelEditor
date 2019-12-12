@@ -1,4 +1,4 @@
-Sprites/Tiles/spr_grass_sheet_0@4x4,Floor,Grass,Tile
+Sprites/Tiles/spr_grass_sheet_0@4x8,Floor,Grass,Tile
 Sprites/Tiles/spr_grass_1,Floor,Grass,Tile
 Sprites/Tiles/spr_grass_2,Floor,Grass,Tile
 Sprites/Tiles/spr_sand_0,Floor,Grass,Tile

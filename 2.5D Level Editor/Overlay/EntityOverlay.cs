@@ -47,6 +47,10 @@ class EntityOverlay : GameObjectList
         {
             button.EnemyType = (EnemyType)Enum.Parse(typeof(EnemyType), type[3]);
         }
+        else if (et == EntityType.AnimatedItem || et == EntityType.SpriteItem)
+        {
+            button.ItemType = (ItemType)Enum.Parse(typeof(ItemType), type[3]);
+        }
 
         button.Position = new Vector2(x, 10);
         Add(button);

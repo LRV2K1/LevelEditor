@@ -33,6 +33,8 @@ partial class LevelEditer : GameObjectLibrary
         overlay.AddStatus("Wall", new TileOverlay(this, "Content/Tiles/Wall.txt"));
         overlay.AddStatus("Tree", new TileOverlay(this, "Content/Tiles/Tree.txt"));
         overlay.AddStatus("Items", new EntityOverlay(this, "Content/Entities/Item.txt"));
+        overlay.AddStatus("Objects", new EntityOverlay(this, "Content/Entities/Object.txt"));
+        overlay.AddStatus("Enemies", new EntityOverlay(this, "Content/Entities/Enemy.txt"));
         overlay.AddStatus("Spawn", new EntityOverlay(this, "Content/Entities/Spawn.txt"));
 
         LevelGrid levelGrid = GetObject("levelgrid") as LevelGrid;
@@ -110,6 +112,10 @@ partial class LevelEditer : GameObjectLibrary
         if (et == EntityType.Enemy)
         {
             entity.EnemyType = (EnemyType)Enum.Parse(typeof(EnemyType), type[3]);
+        }
+        if (et == EntityType.SpriteItem || et == EntityType.AnimatedItem)
+        {
+            entity.ItemType = (ItemType)Enum.Parse(typeof(ItemType), type[3]);
         }
         return entity;
     }

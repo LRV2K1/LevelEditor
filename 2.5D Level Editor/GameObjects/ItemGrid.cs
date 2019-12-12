@@ -48,6 +48,11 @@ class ItemGrid : GameObjectGrid
                 GameMouse mouse = GameWorld.GetObject("mouse") as GameMouse;
                 newentity.EnemyType = mouse.EnemyType;
             }
+            else if (et == EntityType.AnimatedItem || et == EntityType.SpriteItem)
+            {
+                GameMouse mouse = GameWorld.GetObject("mouse") as GameMouse;
+                newentity.ItemType = mouse.ItemType;
+            }
             Add(newentity, pos.X, pos.Y);
             newentity.InitializeTile();
         }

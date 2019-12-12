@@ -20,7 +20,7 @@ class LevelGrid : GameObjectGrid
         {
             for (int y = 0; y < Rows; y++)
             {
-                Tile tile = new Tile(new Point(x, y), "Sprites/Tiles/spr_grass_sheet_0@4x4", TileType.Floor, TextureType.Grass);
+                Tile tile = new Tile(new Point(x, y), "Sprites/Tiles/spr_grass_sheet_0@4x8", TileType.Floor, TextureType.Grass);
                 Add(tile, x, y);
             }
         }

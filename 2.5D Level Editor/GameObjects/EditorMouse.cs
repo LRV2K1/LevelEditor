@@ -14,6 +14,7 @@ class GameMouse : GameObject
     protected TileObject tileobject;
     protected EntityType entitytype;
     protected EnemyType enemytype;
+    protected ItemType itemtype;
     protected bool item, tile;
     string asset;
     int entityBoundingBox;
@@ -106,6 +107,11 @@ class GameMouse : GameObject
         set { entitytype = value; }
     }
 
+    public ItemType ItemType
+    {
+        get { return itemtype; }
+        set { itemtype = value; }
+    }
     public EnemyType EnemyType
     {
         get { return enemytype; }
