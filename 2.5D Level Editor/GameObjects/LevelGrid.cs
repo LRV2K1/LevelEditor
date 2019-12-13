@@ -20,7 +20,8 @@ class LevelGrid : GameObjectGrid
         {
             for (int y = 0; y < Rows; y++)
             {
-                Tile tile = new Tile(new Point(x, y), "Sprites/Tiles/spr_grass_sheet_0@4x8", TileType.Floor, TextureType.Grass);
+                //Tile tile = new GrassTile(new Point(x, y), "Sprites/Tiles/spr_cave_sheet_0@4x8", TileType.Floor, TextureType.Grass);
+                Tile tile = new GrassTile(new Point(x, y), "Sprites/Tiles/spr_grass_sheet_0@4x8", TileType.Floor, TextureType.Grass);
                 Add(tile, x, y);
             }
         }
@@ -60,6 +61,9 @@ class LevelGrid : GameObjectGrid
                     case TileObject.TreeTile:
                         newtile = new TreeTile(pos, asset, tp, tt);
                         break;
+                    case TileObject.GrassTile:
+                        newtile = new GrassTile(pos, asset, tp, tt);
+                        break;
                     default:
                         newtile = new Tile(pos);
                         break;
@@ -96,6 +100,20 @@ class LevelGrid : GameObjectGrid
         }
         Tile current = GameWorld.GetObject(Grid[x, y]) as Tile;
         return current.TextureType;
+    }
+
+    public TileObject GetTileObject(int x, int y)
+    {
+        if (x < 0 || x >= Columns)
+        {
+            return TileObject.Tile;
+        }
+        if (y < 0 || y >= Rows)
+        {
+            return TileObject.Tile;
+        }
+        Tile current = GameWorld.GetObject(Grid[x, y]) as Tile;
+        return current.TileObject;
     }
 
     public override void HandleInput(InputHelper inputHelper)

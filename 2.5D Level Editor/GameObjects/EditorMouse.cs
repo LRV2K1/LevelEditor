@@ -51,7 +51,7 @@ class GameMouse : GameObject
             }
         }
 
-        if(inputHelper.MouseLeftButtonDown() && position.X > 200 && position.Y < 830 && tileobject == TileObject.Tile)
+        if(inputHelper.MouseLeftButtonDown() && position.X > 200 && position.Y < 830 && tileobject != TileObject.TreeTile)
         {
             if (tile)
             {

@@ -31,9 +31,11 @@ partial class LevelEditer : GameObjectLibrary
 
         overlay.AddStatus("Floor", new TileOverlay(this, "Content/Tiles/Floor.txt"));
         overlay.AddStatus("Wall", new TileOverlay(this, "Content/Tiles/Wall.txt"));
+        overlay.AddStatus("Cave", new TileOverlay(this, "Content/Tiles/Cave.txt"));
         overlay.AddStatus("Tree", new TileOverlay(this, "Content/Tiles/Tree.txt"));
         overlay.AddStatus("Items", new EntityOverlay(this, "Content/Entities/Item.txt"));
         overlay.AddStatus("Objects", new EntityOverlay(this, "Content/Entities/Object.txt"));
+        overlay.AddStatus("Cave_Objects", new EntityOverlay(this, "Content/Entities/Cave_Object.txt"));
         overlay.AddStatus("Enemies", new EntityOverlay(this, "Content/Entities/Enemy.txt"));
         overlay.AddStatus("Spawn", new EntityOverlay(this, "Content/Entities/Spawn.txt"));
 
@@ -75,6 +77,8 @@ partial class LevelEditer : GameObjectLibrary
                 return new WallTile(new Point(x, y), asset, tp, tt);
             case "TreeTile":
                 return new TreeTile(new Point(x, y), asset, tp, tt);
+            case "GrassTile":
+                return new GrassTile(new Point(x, y), asset, tp, tt);
         }
 
         return new Tile(new Point(x, y));

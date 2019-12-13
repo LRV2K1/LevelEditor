@@ -19,6 +19,10 @@ class TileButton : Button
         tiletype = tp;
         texturetype = tt;
         tileobject = to;
+        if (to == TileObject.WallTile)
+        {
+            sprite.SheetIndex = 6;
+        }
     }
 
     public override void HandleInput(InputHelper inputHelper)

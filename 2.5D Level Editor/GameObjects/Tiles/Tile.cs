@@ -18,13 +18,15 @@ enum TextureType
     None,
     Grass,
     Water,
+    Mine
 }
 
 enum TileObject
 {
     Tile,
+    GrassTile,
     WallTile,
-    TreeTile
+    TreeTile,
 }
 
 class Tile : SpriteGameObject
@@ -109,7 +111,6 @@ class Tile : SpriteGameObject
         {
             sprite.SheetIndex = s % 16 + 16;
         }
-
     }
     public virtual int CalculateSurroundingStraightTiles()
     {
@@ -117,19 +118,19 @@ class Tile : SpriteGameObject
         LevelGrid levelGrid = GameWorld.GetObject("levelgrid") as LevelGrid;
         //regt
         int r = 0;
-        if (levelGrid.GetTextureType(grid.X, grid.Y - 1) != TextureType.None && levelGrid.GetTextureType(grid.X, grid.Y - 1) != texturetype)
+        if (levelGrid.GetTextureType(grid.X, grid.Y - 1) == texturetype)
         {
             r += 1;
         }
-        if (levelGrid.GetTextureType(grid.X + 1, grid.Y) != TextureType.None && levelGrid.GetTextureType(grid.X + 1, grid.Y) != texturetype)
+        if (levelGrid.GetTextureType(grid.X + 1, grid.Y) == texturetype)
         {
             r += 2;
         }
-        if (levelGrid.GetTextureType(grid.X, grid.Y + 1) != TextureType.None && levelGrid.GetTextureType(grid.X, grid.Y + 1) != texturetype)
+        if (levelGrid.GetTextureType(grid.X, grid.Y + 1) == texturetype)
         {
             r += 4;
         }
-        if (levelGrid.GetTextureType(grid.X - 1, grid.Y) != TextureType.None && levelGrid.GetTextureType(grid.X - 1, grid.Y) != texturetype)
+        if (levelGrid.GetTextureType(grid.X - 1, grid.Y) == texturetype)
         {
             r += 8;
         }
@@ -141,19 +142,19 @@ class Tile : SpriteGameObject
         LevelGrid levelGrid = GameWorld.GetObject("levelgrid") as LevelGrid;
         //schuin
         int s = 0;
-        if (levelGrid.GetTextureType(grid.X + 1, grid.Y - 1) != TextureType.None && levelGrid.GetTextureType(grid.X + 1, grid.Y - 1) != texturetype)
+        if (levelGrid.GetTextureType(grid.X + 1, grid.Y - 1) == texturetype)
         {
             s += 1;
         }
-        if (levelGrid.GetTextureType(grid.X + 1, grid.Y + 1) != TextureType.None && levelGrid.GetTextureType(grid.X + 1, grid.Y + 1) != texturetype)
+        if (levelGrid.GetTextureType(grid.X + 1, grid.Y + 1) == texturetype)
         {
             s += 2;
         }
-        if (levelGrid.GetTextureType(grid.X - 1, grid.Y + 1) != TextureType.None && levelGrid.GetTextureType(grid.X - 1, grid.Y + 1) != texturetype)
+        if (levelGrid.GetTextureType(grid.X - 1, grid.Y + 1) == texturetype)
         {
             s += 4;
         }
-        if (levelGrid.GetTextureType(grid.X - 1, grid.Y - 1) != TextureType.None && levelGrid.GetTextureType(grid.X - 1, grid.Y - 1) != texturetype)
+        if (levelGrid.GetTextureType(grid.X - 1, grid.Y - 1) == texturetype)
         {
             s += 8;
         }
