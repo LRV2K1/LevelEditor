@@ -78,7 +78,7 @@ partial class LevelEditer : GameObjectLibrary
             case "TreeTile":
                 return new TreeTile(new Point(x, y), set, tp, tt);
             case "GrassTile":
-                turn new GrassTile(new Point(x, y), set, tp, tt);
+                return new GrassTile(new Point(x, y), set, tp, tt);
         }
 
         return new Tile(new Point(x, y));
