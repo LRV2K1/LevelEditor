@@ -65,20 +65,20 @@ partial class LevelEditer : GameObjectLibrary
     private Tile LoadTile(int x, int y, string tiletype)
     {
         string[] type = tiletype.Split(',');
-        string asset = type[0];
+        string set = type[0];
         TileType tp = (TileType)Enum.Parse(typeof(TileType), type[1]);
         TextureType tt = (TextureType)Enum.Parse(typeof(TextureType), type[2]);
 
         switch (type[3])
         {
             case "Tile":
-                return new Tile(new Point(x, y), asset, tp, tt);
+                return new Tile(new Point(x, y), set, tp, tt);
             case "WallTile":
-                return new WallTile(new Point(x, y), asset, tp, tt);
+                return new WallTile(new Point(x, y), set, tp, tt);
             case "TreeTile":
-                return new TreeTile(new Point(x, y), asset, tp, tt);
+                return new TreeTile(new Point(x, y), set, tp, tt);
             case "GrassTile":
-                return new GrassTile(new Point(x, y), asset, tp, tt);
+                turn new GrassTile(new Point(x, y), set, tp, tt);
         }
 
         return new Tile(new Point(x, y));
