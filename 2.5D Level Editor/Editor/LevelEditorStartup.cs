@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 
 partial class LevelEditer : GameObjectLibrary
 {
+    //make new level
     public void NewLevel(int width, int height)
     {
         LevelGrid levelGrid = new LevelGrid(width, height, 0, "levelgrid");
@@ -22,6 +23,7 @@ partial class LevelEditer : GameObjectLibrary
         itemGrid.SetupGrid();
     }
 
+    //load all overlays
     private void LoadOverlay()
     {
         RootList.Add(new GameMouse());
@@ -45,6 +47,7 @@ partial class LevelEditer : GameObjectLibrary
         RootList.Add(camera);
     }
 
+    //load tiles
     private void LoadTiles(List<string> textlines, int width, Dictionary<char, string> tiletypechar)
     {
         LevelGrid levelGrid = new LevelGrid(width, textlines.Count, 0, "levelgrid");
@@ -52,6 +55,7 @@ partial class LevelEditer : GameObjectLibrary
         levelGrid.CellWidth = 108;
         levelGrid.CellHeight = 54;
 
+        //check all characters
         for (int x = 0; x < width; x++)
         {
             for (int y = 0; y < textlines.Count; y++)
@@ -62,6 +66,7 @@ partial class LevelEditer : GameObjectLibrary
         }
     }
 
+    //laod tile
     private Tile LoadTile(int x, int y, string tiletype)
     {
         string[] type = tiletype.Split(',');
@@ -69,6 +74,7 @@ partial class LevelEditer : GameObjectLibrary
         TileType tp = (TileType)Enum.Parse(typeof(TileType), type[1]);
         TextureType tt = (TextureType)Enum.Parse(typeof(TextureType), type[2]);
 
+        //make different tiles
         switch (type[3])
         {
             case "Tile":
@@ -84,6 +90,7 @@ partial class LevelEditer : GameObjectLibrary
         return new Tile(new Point(x, y));
     }
 
+    //load entities
     private void LoadEntities(List<string> textlines, int width, Dictionary<char, string> entitytypechar)
     {
         ItemGrid itemGrid = new ItemGrid(width, textlines.Count, 0, "itemgrid");
@@ -91,6 +98,7 @@ partial class LevelEditer : GameObjectLibrary
         itemGrid.CellWidth = 108;
         itemGrid.CellHeight = 54;
 
+        //check all characters
         for (int x = 0; x < width; x++)
         {
             for (int y = 0; y < textlines.Count; y++)
@@ -101,6 +109,7 @@ partial class LevelEditer : GameObjectLibrary
         }
     }
 
+    //load entity
     private Entity LoadEntity(int x, int y, string entitytype)
     {
         string[] type = entitytype.Split(',');
@@ -113,6 +122,7 @@ partial class LevelEditer : GameObjectLibrary
         int boundingy = int.Parse(type[1]);
         EntityType et = (EntityType)Enum.Parse(typeof(EntityType), type[2]);
         Entity entity = new Entity(new Point(x, y), asset, boundingy, et);
+        //check for additional information
         if (et == EntityType.Enemy)
         {
             entity.EnemyType = (EnemyType)Enum.Parse(typeof(EnemyType), type[3]);

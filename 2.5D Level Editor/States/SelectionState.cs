@@ -26,6 +26,7 @@ class SelectionState : IGameLoopObject
     {
         Load.HandleInput(inputHelper);
         New.HandleInput(inputHelper);
+        //selecting load/new
         if (Load.Pressed)
         {
             EditorState editorState = GameEnvironment.GameStateManager.GetGameState("editorState") as EditorState;

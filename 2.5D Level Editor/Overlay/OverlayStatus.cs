@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 class OverlayStatus : GameObjectList
 {
+    //shows current selected overlay
     Dictionary<string, string> status;
     TextButton save;
     string activestatus;
@@ -40,6 +41,7 @@ class OverlayStatus : GameObjectList
         }
     }
 
+    //add overlay with button
     public void AddStatus(string key, GameObject obj)
     {
         Add(obj);

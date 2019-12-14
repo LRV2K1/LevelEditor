@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
+
+//entity data
 enum EntityType
 {
     None,
@@ -77,6 +79,7 @@ class Entity : SpriteGameObject
 
     public virtual void InitializeTile()
     {
+        //setup origin
         if (type == EntityType.None)
         {
             return;

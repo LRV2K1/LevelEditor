@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 class OverlayButton : TextButton
 {
+    //simple button with text
     public OverlayButton(string text, int layer, string id = "")
         : base("Fonts/Hud", text, layer, id)
     {

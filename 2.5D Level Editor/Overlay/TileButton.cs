@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 class TileButton : Button
 {
+    //button to select tiles
     protected TileType tiletype;
     protected TextureType texturetype;
     protected TileObject tileobject;
@@ -27,6 +28,7 @@ class TileButton : Button
 
     public override void HandleInput(InputHelper inputHelper)
     {
+        //give information to the mouse
         base.HandleInput(inputHelper);
         if (pressed)
         {

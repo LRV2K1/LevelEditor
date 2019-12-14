@@ -10,6 +10,7 @@ public partial class LevelEditer : GameObjectLibrary
     public LevelEditer(int x, int y, bool load = false, string path = "")
         : base()
     {
+        //check for load or new
         if (!load)
         {
             NewLevel(x, y);

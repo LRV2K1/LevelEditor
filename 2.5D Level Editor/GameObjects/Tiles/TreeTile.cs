@@ -15,6 +15,7 @@ class TreeTile : Tile
 
     public override void InitializeTile()
     {
+        //set origin
         base.InitializeTile();
         LevelGrid levelGrid = GameWorld.GetObject("levelgrid") as LevelGrid;
         origin = new Vector2(Width / 2, Height - levelGrid.CellHeight / 2);
@@ -22,22 +23,10 @@ class TreeTile : Tile
 
     public override void ChangeTile(TileType tp, TextureType tt, string assetName = "")
     {
+        base.ChangeTile(tp, tt, assetName);
+        //set random tree sprite
         sprite = null;
         sprite = new SpriteSheet(assetName + GameEnvironment.Random.Next(0, 5));
-        texturetype = tt;
-        type = tp;
-
-        LevelGrid levelGrid = GameWorld.GetObject("levelgrid") as LevelGrid;
-        for (int x = grid.X - 1; x <= grid.X + 1; x++)
-        {
-            for (int y = grid.Y - 1; y <= grid.Y + 1; y++)
-            {
-                Tile tile = levelGrid.Get(x, y) as Tile;
-                if (tile != null)
-                {
-                    tile.InitializeTile();
-                }
-            }
-        }
+        InitializeTile();
     }
 }

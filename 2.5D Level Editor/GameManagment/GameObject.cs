@@ -70,6 +70,7 @@ public abstract class GameObject : IGameLoopObject
         }
     }
 
+    //the rootlist of the gameworld
     public virtual GameObjectList RootList
     {
         get
@@ -90,6 +91,7 @@ public abstract class GameObject : IGameLoopObject
         get { return GameWorld as LevelEditer; }
     }
 
+    //the gameworld is a library
     public GameObjectLibrary GameWorld
     {
         get { return library; }

@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework.Input;
 
 class EditorState : IGameLoopObject
 {
+    //updates the level editor
     protected ContentManager content;
     protected LevelEditer LevelEditer;
 

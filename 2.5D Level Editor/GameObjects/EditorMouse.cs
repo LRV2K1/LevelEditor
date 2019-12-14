@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework;
 
 class GameMouse : GameObject
 {
+    //store all selected information
     Vector2 mousePos;
     protected TextureType texturetype;
     protected TileType tiletype;
@@ -39,6 +40,7 @@ class GameMouse : GameObject
         mousePos = inputHelper.MousePosition + camera.CameraPosition;
         position = inputHelper.MousePosition;
 
+        //check when pressed
         if (inputHelper.MouseLeftButtonPressed() && position.X > 200 && position.Y < 830)
         {
             if (tile)
@@ -51,6 +53,7 @@ class GameMouse : GameObject
             }
         }
 
+        //check when hold down
         if(inputHelper.MouseLeftButtonDown() && position.X > 200 && position.Y < 830 && tileobject != TileObject.TreeTile)
         {
             if (tile)
@@ -60,18 +63,22 @@ class GameMouse : GameObject
         }
     }
 
+    //switch tile
     private void SwitchTile()
     {
+        //give information to the levelgrid to switch tile
         LevelGrid level = GameWorld.GetObject("levelgrid") as LevelGrid;
         level.SwitchTile(mousePos, tiletype, texturetype, tileobject, asset);
     }
 
     private void SwitchItem()
     {
+        //give information to the item grid to switch item
         ItemGrid itemGrid = GameWorld.GetObject("itemgrid") as ItemGrid;
         itemGrid.SwitchItem(mousePos, entitytype, asset, entityBoundingBox);
     }
 
+    //lots of variables
     public Vector2 MousePos
     {
         get { return mousePos; }

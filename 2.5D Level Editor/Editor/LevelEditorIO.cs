@@ -17,6 +17,7 @@ partial class LevelEditer : GameObjectLibrary
         string[] map = new string[level.Rows];
         char type = 'a';
 
+        //check every grid tile position
         for (int y = 0; y < level.Rows; y++)
         {
             string line = "";
@@ -26,8 +27,10 @@ partial class LevelEditer : GameObjectLibrary
                 Tile tile = GetObject(level.Grid[x, y]) as Tile;
                 string tiletype = tile.Sprite.Sprite.ToString() + "," + tile.TileType.ToString() + "," + tile.TextureType.ToString() + "," + tile.TileObject.ToString();
 
+                //check for new tiles
                 if (!tiletypeschar.ContainsKey(tiletype))
                 {
+                    //save new tiles with new character
                     tiletypeschar.Add(tiletype, type);
                     type = (char)((int)type + 1);
                     tiletypes.Add(tiletype);
@@ -39,12 +42,14 @@ partial class LevelEditer : GameObjectLibrary
             map[y] = line;
         }
 
+        //write all different tiles
         for (int i = 0; i < tiletypes.Count; i++)
         {
             streamWriter.WriteLine(tiletypeschar[tiletypes[i]] +":"+ tiletypes[i]);
         }
         streamWriter.WriteLine("");
         
+        //write grid
         for (int y = 0; y < level.Rows; y++)
         {
             streamWriter.WriteLine(map[y]);
@@ -57,6 +62,7 @@ partial class LevelEditer : GameObjectLibrary
         string[] items = new string[level.Rows];
         type = 'a';
 
+        //check entities in entity grid
         for (int y = 0; y < level.Rows; y++)
         {
             string line = "";
@@ -67,6 +73,7 @@ partial class LevelEditer : GameObjectLibrary
 
                 if (entity.EntityType == EntityType.None)
                 {
+                    //check for empty entity
                     if (!entitytypechar.ContainsKey("None"))
                     {
                         entitytypechar.Add("None", type);
@@ -78,6 +85,7 @@ partial class LevelEditer : GameObjectLibrary
                     continue;
                 }
                 string entitytype = entity.Sprite.Sprite.ToString() + "," + entity.Boundingy.ToString() + "," + entity.EntityType.ToString();
+                //get aditional information on entity
                 if (entity.EntityType == EntityType.Enemy)
                 {
                     entitytype += "," + entity.EnemyType.ToString();
@@ -86,9 +94,11 @@ partial class LevelEditer : GameObjectLibrary
                 {
                     entitytype += "," + entity.ItemType.ToString();
                 }
-                
+
+                //check for new entity
                 if (!entitytypechar.ContainsKey(entitytype))
                 {
+                    //save new entity with new character
                     entitytypechar.Add(entitytype, type);
                     type = (char)((int)type + 1);
                     entitytypes.Add(entitytype);
@@ -100,12 +110,14 @@ partial class LevelEditer : GameObjectLibrary
             map[y] = line;
         }
 
+        //write all different entities
         for (int i = 0; i < entitytypes.Count; i++)
         {
             streamWriter.WriteLine(entitytypechar[entitytypes[i]] + ":" + entitytypes[i]);
         }
         streamWriter.WriteLine("");
 
+        //write entity grid
         for (int y = 0; y < level.Rows; y++)
         {
             streamWriter.WriteLine(map[y]);
@@ -120,6 +132,7 @@ partial class LevelEditer : GameObjectLibrary
         List<string> textLines = new List<string>();
         StreamReader streamReader = new StreamReader(path);
 
+        //read different tile types
         string line = streamReader.ReadLine();
         while (line != "")
         {
@@ -131,17 +144,21 @@ partial class LevelEditer : GameObjectLibrary
 
         line = streamReader.ReadLine();
         int width = line.Length;
+
+        //read tile grid
         while (line != "")
         {
             textLines.Add(line);
             line = streamReader.ReadLine();
         }
 
+        //give information to the tile loading
         LoadTiles(textLines, width, tiletypeschar);
 
         Dictionary<char, string> entitytypeschar = new Dictionary<char, string>();
         List<string> entityLines = new List<string>();
 
+        //read different entity types
         line = streamReader.ReadLine();
         while (line != "")
         {
@@ -153,12 +170,15 @@ partial class LevelEditer : GameObjectLibrary
         
         line = streamReader.ReadLine();
         width = line.Length;
+
+        //read entity grid
         while (line != null)
         {
             entityLines.Add(line);
             line = streamReader.ReadLine();
         }
 
+        //give information to entity loading
         LoadEntities(entityLines, width, entitytypeschar);
         
         streamReader.Close();

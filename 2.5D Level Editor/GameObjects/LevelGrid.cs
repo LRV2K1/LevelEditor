@@ -14,6 +14,7 @@ class LevelGrid : GameObjectGrid
     {
     }
 
+    //setup empty level grid
     public void SetupGrid()
     {
         for (int x = 0; x < Columns; x++)
@@ -27,6 +28,7 @@ class LevelGrid : GameObjectGrid
         }
     }
 
+    //add a tile to the grid
     public override void Add(GameObject obj, int x, int y)
     {
         GameWorld.Add(obj);
@@ -35,19 +37,24 @@ class LevelGrid : GameObjectGrid
         obj.Position = AnchorPosition(x, y);
     }
 
+    //switch tiles in the grid
+    //get information from the mouse
     public void SwitchTile(Vector2 mousepos, TileType tp, TextureType tt, TileObject to, string asset)
     {
+        //check selected tile
         Vector2 vpos = GridPosition(mousepos + new Vector2(0, cellHeight / 2));
         Point pos = new Point((int)vpos.X, (int)vpos.Y);
         Tile tile = Get(pos.X, pos.Y) as Tile;
         if (tile != null)
         {
+            //change tile
             if (tile.TileObject == to)
             {
                 tile.ChangeTile(tp, tt, asset);
             }
             else
             {
+                //replace tile
                 Remove(tile.Id, pos.X, pos.Y);
                 Tile newtile;
                 switch (to)
@@ -146,6 +153,7 @@ class LevelGrid : GameObjectGrid
         }
     }
 
+    //check for active tiles on screen
     private List<string> ActiveTiles()
     {
         List<string> tiles = new List<string>();

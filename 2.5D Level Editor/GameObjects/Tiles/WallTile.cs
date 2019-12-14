@@ -16,11 +16,13 @@ class WallTile : Tile
 
     public override void InitializeTile()
     {
+        //set origin
         base.InitializeTile();
         LevelGrid levelGrid = GameWorld.GetObject("levelgrid") as LevelGrid;
         origin = new Vector2(Width / 2, Height - levelGrid.CellHeight / 2 - 1);
     }
 
+    //autotiling algorithm
     public override int CalculateSurroundingStraightTiles()
     {
         LevelGrid levelGrid = GameWorld.GetObject("levelgrid") as LevelGrid;
@@ -46,6 +48,7 @@ class WallTile : Tile
         
     }
 
+    //autotiling algorithm
     public override int CalculateSurroundingSideTiles()
     {
         LevelGrid levelGrid = GameWorld.GetObject("levelgrid") as LevelGrid;

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 class Button : SpriteGameObject
 {
+    //simple button
     protected bool pressed;
 
     public Button(string assetname, int layer = 101, string id = "")

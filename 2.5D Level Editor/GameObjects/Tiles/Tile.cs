@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
+//tile data
 enum TileType
 {
     Background,
@@ -51,6 +52,7 @@ class Tile : SpriteGameObject
         InitializeTile();
     }
 
+    //change tile
     public virtual void ChangeTile(TileType tp, TextureType tt, string assetName = "")
     {
         sprite = null;
@@ -58,6 +60,7 @@ class Tile : SpriteGameObject
         texturetype = tt;
         type = tp;
 
+        //update surrounding tiles
         LevelGrid levelGrid = GameWorld.GetObject("levelgrid") as LevelGrid;
         for (int x = grid.X -1; x <= grid.X + 1; x++)
         {
@@ -89,6 +92,7 @@ class Tile : SpriteGameObject
 
     public virtual void InitializeTile()
     {
+        //set origin and sprite
         if (type == TileType.Background)
         {
             return;
@@ -99,8 +103,10 @@ class Tile : SpriteGameObject
         SetSprite();
     }
 
+    //set sprite
     public virtual void SetSprite()
     {
+        //autotiling algorithm
         int r = CalculateSurroundingStraightTiles();
         int s = CalculateSurroundingSideTiles();
         if (r != 0)
@@ -112,6 +118,8 @@ class Tile : SpriteGameObject
             sprite.SheetIndex = s % 16 + 16;
         }
     }
+
+    //autotiling algorithm
     public virtual int CalculateSurroundingStraightTiles()
     {
 
@@ -137,6 +145,7 @@ class Tile : SpriteGameObject
         return r;
     }
 
+    //autotiling algorithm
     public virtual int CalculateSurroundingSideTiles()
     {
         LevelGrid levelGrid = GameWorld.GetObject("levelgrid") as LevelGrid;

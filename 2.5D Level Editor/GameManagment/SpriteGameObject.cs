@@ -35,6 +35,7 @@ public class SpriteGameObject : GameObject
         {
             if (GameWorld != null)
             {
+                //draw in reference to camera
                 Camera camera = GameWorld.GetObject("camera") as Camera;
                 if (camera != null)
                 {
@@ -97,6 +98,7 @@ public class SpriteGameObject : GameObject
 
     public bool CollidesWith(SpriteGameObject obj)
     {
+        //check for collision between sprite gameobjects
         if (!visible || !obj.visible || !BoundingBox.Intersects(obj.BoundingBox))
         {
             return false;

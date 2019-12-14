@@ -14,6 +14,7 @@ class ItemGrid : GameObjectGrid
 
     }
 
+    //setup empty itemgrid
     public void SetupGrid()
     {
         for (int x = 0; x < Columns; x++)
@@ -26,6 +27,7 @@ class ItemGrid : GameObjectGrid
         }
     }
 
+    //add item to the grid
     public override void Add(GameObject obj, int x, int y)
     {
         GameWorld.Add(obj);
@@ -34,22 +36,28 @@ class ItemGrid : GameObjectGrid
         obj.Position = AnchorPosition(x, y);
     }
 
+    //switch item in the grid
+    //get information from the mouse
     public void SwitchItem(Vector2 mousepos, EntityType et, string asset, int boundingy = 0)
     {
+        //check selected entity
         Vector2 vpos = GridPosition(mousepos + new Vector2(0, cellHeight / 2));
         Point pos = new Point((int)vpos.X, (int)vpos.Y);
         Entity entity = Get(pos.X, pos.Y) as Entity;
+        //replace entity
         if (entity != null)
         {
             Remove(entity.Id, pos.X, pos.Y);
             Entity newentity = new Entity(pos, asset, boundingy, et);
             if (et == EntityType.Enemy)
             {
+                //get additional information from the mouse
                 GameMouse mouse = GameWorld.GetObject("mouse") as GameMouse;
                 newentity.EnemyType = mouse.EnemyType;
             }
             else if (et == EntityType.AnimatedItem || et == EntityType.SpriteItem)
             {
+                //get additional information from the mouse
                 GameMouse mouse = GameWorld.GetObject("mouse") as GameMouse;
                 newentity.ItemType = mouse.ItemType;
             }
