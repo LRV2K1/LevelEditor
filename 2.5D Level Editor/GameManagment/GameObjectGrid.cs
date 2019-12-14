@@ -21,6 +21,7 @@ public class GameObjectGrid : GameObject
 
     public virtual void Add(GameObject obj, int x, int y)
     {
+        //add to gameworld
         GameWorld.Add(obj);
         grid[x, y] = obj.Id;
         obj.Parent = this;

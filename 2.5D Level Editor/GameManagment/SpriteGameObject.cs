@@ -27,6 +27,7 @@ public class SpriteGameObject : GameObject
             return;
         }
 
+        //check layer
         if (this.layer > 90)
         {
             sprite.Draw(spriteBatch, this.GlobalPosition, origin);
