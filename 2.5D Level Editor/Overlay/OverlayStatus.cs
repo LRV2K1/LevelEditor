@@ -23,7 +23,7 @@ class OverlayStatus : GameObjectList
 
         save = new TextButton("Fonts/Hud", "save", 102);
         save.Color = Color.Red;
-        save.Position = new Vector2(1820, 20);
+        save.Position = new Vector2(30, 20);
         Add(save);
 
         Add(new SpriteGameObject("Sprites/Menu/spr_overlay2", 101));
@@ -41,7 +41,6 @@ class OverlayStatus : GameObjectList
         }
     }
 
-    //add overlay with button
     public void AddStatus(string key, GameObject obj)
     {
         Add(obj);

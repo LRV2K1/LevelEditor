@@ -4,3 +4,4 @@ Sprites/Tiles/spr_grass_2,Floor,Grass,Tile
 Sprites/Tiles/spr_sand_0,Floor,Grass,Tile
 Sprites/Tiles/spr_brick_0,Floor,Grass,Tile
 Sprites/Tiles/spr_water_0,Wall,Water,Tile
+Sprites/Tiles/spr_castle_0,Floor,Grass,Tile

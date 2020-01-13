@@ -7,7 +7,6 @@ using Microsoft.Xna.Framework;
 
 partial class LevelEditer : GameObjectLibrary
 {
-    //make new level
     public void NewLevel(int width, int height)
     {
         LevelGrid levelGrid = new LevelGrid(width, height, 0, "levelgrid");
@@ -23,7 +22,6 @@ partial class LevelEditer : GameObjectLibrary
         itemGrid.SetupGrid();
     }
 
-    //load all overlays
     private void LoadOverlay()
     {
         RootList.Add(new GameMouse());
@@ -47,69 +45,75 @@ partial class LevelEditer : GameObjectLibrary
         RootList.Add(camera);
     }
 
-    //load tiles
     private void LoadTiles(List<string> textlines, int width, Dictionary<char, string> tiletypechar)
     {
-        LevelGrid levelGrid = new LevelGrid(width, textlines.Count, 0, "levelgrid");
-        RootList.Add(levelGrid);
-        levelGrid.CellWidth = 108;
-        levelGrid.CellHeight = 54;
+        LevelGrid level = new LevelGrid(width, textlines.Count, 0, "tiles");
+        RootList.Add(level);
+        level.CellWidth = 108;
+        level.CellHeight = 54;
 
-        //check all characters
+        Camera camera = GetObject("camera") as Camera;
+        camera.Width = (width) * level.CellWidth / 2;
+        camera.Height = (textlines.Count) * level.CellHeight;
+
         for (int x = 0; x < width; x++)
         {
             for (int y = 0; y < textlines.Count; y++)
             {
-                Tile t = LoadTile(x, y, tiletypechar[textlines[y][x]]);
-                levelGrid.Add(t, x, y);
+                try
+                {
+                    Tile t = LoadTile(x, y, tiletypechar[textlines[y][x]]);
+                    level.Add(t, x, y);
+                }
+                catch
+                {
+                    Tile t = LoadTile(x, y, tiletypechar['a']);
+                    level.Add(t, x, y);
+                }
             }
         }
     }
 
-    //laod tile
     private Tile LoadTile(int x, int y, string tiletype)
     {
         string[] type = tiletype.Split(',');
-        string set = type[0];
+        string asset = type[0];
         TileType tp = (TileType)Enum.Parse(typeof(TileType), type[1]);
         TextureType tt = (TextureType)Enum.Parse(typeof(TextureType), type[2]);
 
-        //make different tiles
         switch (type[3])
         {
             case "Tile":
-                return new Tile(new Point(x, y), set, tp, tt);
+                return new Tile(new Point(x, y), asset, tp, tt);
             case "WallTile":
-                return new WallTile(new Point(x, y), set, tp, tt);
+                return new WallTile(new Point(x, y), asset, tp, tt);
             case "TreeTile":
-                return new TreeTile(new Point(x, y), set, tp, tt);
+                return new TreeTile(new Point(x, y), asset, tp, tt);
             case "GrassTile":
-                return new GrassTile(new Point(x, y), set, tp, tt);
+                return new GrassTile(new Point(x, y), asset, tp, tt);
         }
 
         return new Tile(new Point(x, y));
     }
 
-    //load entities
     private void LoadEntities(List<string> textlines, int width, Dictionary<char, string> entitytypechar)
     {
-        ItemGrid itemGrid = new ItemGrid(width, textlines.Count, 0, "itemgrid");
-        RootList.Add(itemGrid);
-        itemGrid.CellWidth = 108;
-        itemGrid.CellHeight = 54;
-
-        //check all characters
         for (int x = 0; x < width; x++)
         {
             for (int y = 0; y < textlines.Count; y++)
             {
-                Entity t = LoadEntity(x, y, entitytypechar[textlines[y][x]]);
-                itemGrid.Add(t, x, y);
+                try
+                {
+                    LoadEntity(x, y, entitytypechar[textlines[y][x]]);
+                }
+                catch
+                {
+                    LoadEntity(x, y, "None");
+                }
             }
         }
     }
 
-    //load entity
     private Entity LoadEntity(int x, int y, string entitytype)
     {
         string[] type = entitytype.Split(',');

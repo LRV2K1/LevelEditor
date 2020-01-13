@@ -128,59 +128,54 @@ partial class LevelEditer : GameObjectLibrary
 
     public void Load(string path)
     {
-        Dictionary<char, string> tiletypeschar = new Dictionary<char, string>();
-        List<string> textLines = new List<string>();
-        StreamReader streamReader = new StreamReader(path);
+        StreamReader streamReader;
+        try
+        {
+            streamReader = new StreamReader(path);
+        }
+        catch
+        {
+            Console.WriteLine("level not found for paht: " + path);
+            GameEnvironment.GameStateManager.SwitchTo("offlineSelectionState");
+            return;
+        }
 
-        //read different tile types
+        Dictionary<char, string> tiletypes = ReadTypes(streamReader);
+        List<string> tilegrid = ReadGrid(streamReader);
+        int width = tilegrid[0].Length;
+
+        LoadTiles(tilegrid, width, tiletypes);
+
+        Dictionary<char, string> entitytypes = ReadTypes(streamReader);
+        List<string> entitygrid = ReadGrid(streamReader);
+        width = entitygrid[0].Length;
+
+        LoadEntities(entitygrid, width, entitytypes);
+    }
+
+    private Dictionary<char, string> ReadTypes(StreamReader streamReader)
+    {
+        Dictionary<char, string> types = new Dictionary<char, string>();
         string line = streamReader.ReadLine();
-        while (line != "")
+        while (line != null && line != "")
         {
-            string[] types = line.Split(':');
-            char[] a = types[0].ToCharArray();
-            tiletypeschar.Add(a[0], types[1]);
+            string[] type = line.Split(':');
+            char[] a = type[0].ToCharArray();
+            types.Add(a[0], type[1]);
             line = streamReader.ReadLine();
         }
+        return types;
+    }
 
-        line = streamReader.ReadLine();
-        int width = line.Length;
-
-        //read tile grid
-        while (line != "")
+    private List<string> ReadGrid(StreamReader streamReader)
+    {
+        List<string> grid = new List<string>();
+        string line = streamReader.ReadLine();
+        while (line != null && line != "")
         {
-            textLines.Add(line);
+            grid.Add(line);
             line = streamReader.ReadLine();
         }
-
-        //give information to the tile loading
-        LoadTiles(textLines, width, tiletypeschar);
-
-        Dictionary<char, string> entitytypeschar = new Dictionary<char, string>();
-        List<string> entityLines = new List<string>();
-
-        //read different entity types
-        line = streamReader.ReadLine();
-        while (line != "")
-        {
-            string[] types = line.Split(':');
-            char[] a = types[0].ToCharArray();
-            entitytypeschar.Add(a[0], types[1]);
-            line = streamReader.ReadLine();
-        }
-        
-        line = streamReader.ReadLine();
-        width = line.Length;
-
-        //read entity grid
-        while (line != null)
-        {
-            entityLines.Add(line);
-            line = streamReader.ReadLine();
-        }
-
-        //give information to entity loading
-        LoadEntities(entityLines, width, entitytypeschar);
-        
-        streamReader.Close();
+        return grid;
     }
 }

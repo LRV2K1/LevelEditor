@@ -15,10 +15,17 @@ class EntityOverlay : GameObjectList
         ReadFile(path);
     }
 
-    //read file to make buttons
     private void ReadFile(string path)
     {
         StreamReader streamReader = new StreamReader(path);
+        try
+        {
+            streamReader = new StreamReader(path);
+        }
+        catch
+        {
+            return;
+        }
         string line = streamReader.ReadLine();
         int x = 20;
         while (line != "" && line != null)
@@ -30,7 +37,6 @@ class EntityOverlay : GameObjectList
         streamReader.Close();
     }
 
-    //make buttons
     private void MakeButton(int x, string line)
     {
         string[] type = line.Split(',');

@@ -20,7 +20,6 @@ class Camera : GameObject
     {
     }
 
-    //move camera
     public override void HandleInput(InputHelper inputHelper)
     {
         if (inputHelper.IsKeyDown(Keys.Left))
@@ -77,7 +76,6 @@ class Camera : GameObject
         set { cameraPosition = value; }
     }
 
-    //postition on screen
     public bool OnScreen(Vector2 loc)
     {
         Rectangle screen = new Rectangle((int)cameraPosition.X - edge, (int)cameraPosition.Y - edge, GameEnvironment.Screen.X + edge * 2, GameEnvironment.Screen.Y + edge * 2);

@@ -37,7 +37,7 @@ class SelectionState : IGameLoopObject
         if (New.Pressed)
         {
             EditorState editorState = GameEnvironment.GameStateManager.GetGameState("editorState") as EditorState;
-            editorState.NewLevel(40, 40);
+            editorState.NewLevel(60, 60);
             GameEnvironment.GameStateManager.SwitchTo("editorState");
         }
     }

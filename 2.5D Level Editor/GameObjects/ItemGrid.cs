@@ -14,7 +14,6 @@ class ItemGrid : GameObjectGrid
 
     }
 
-    //setup empty itemgrid
     public void SetupGrid()
     {
         for (int x = 0; x < Columns; x++)
@@ -27,7 +26,6 @@ class ItemGrid : GameObjectGrid
         }
     }
 
-    //add item to the grid
     public override void Add(GameObject obj, int x, int y)
     {
         GameWorld.Add(obj);
@@ -36,8 +34,6 @@ class ItemGrid : GameObjectGrid
         obj.Position = AnchorPosition(x, y);
     }
 
-    //switch item in the grid
-    //get information from the mouse
     public void SwitchItem(Vector2 mousepos, EntityType et, string asset, int boundingy = 0)
     {
         //check selected entity

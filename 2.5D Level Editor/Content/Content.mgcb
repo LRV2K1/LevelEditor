@@ -35,7 +35,7 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/Hud.spritefont
 
-#begin Sprites/Enemy/spr_enemy_0@4.png
+#begin Sprites/Enemy/Grave.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -45,9 +45,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Sprites/Enemy/spr_enemy_0@4.png
+/build:Sprites/Enemy/Grave.png
 
-#begin Sprites/Enemy/spr_enemy_1@4.png
+#begin Sprites/Enemy/Minotaur.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -57,7 +57,31 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Sprites/Enemy/spr_enemy_1@4.png
+/build:Sprites/Enemy/Minotaur.png
+
+#begin Sprites/Enemy/Skeleton.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Sprites/Enemy/Skeleton.png
+
+#begin Sprites/Enemy/Zombie.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Sprites/Enemy/Zombie.png
 
 #begin Sprites/Items/spr_barrel.png
 /importer:TextureImporter
@@ -623,6 +647,18 @@
 /processorParam:TextureFormat=Color
 /build:Sprites/Player/spr_walking_test_1.png
 
+#begin Sprites/spr_test_1.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Sprites/spr_test_1.png
+
 #begin Sprites/Tiles/spr_brick_0.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -658,6 +694,30 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Sprites/Tiles/spr_brick_wall_sheet_1@4x4.png
+
+#begin Sprites/Tiles/spr_castle_0.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Sprites/Tiles/spr_castle_0.png
+
+#begin Sprites/Tiles/spr_castle_wall_sheet_1@4x8.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Sprites/Tiles/spr_castle_wall_sheet_1@4x8.png
 
 #begin Sprites/Tiles/spr_cave_0.png
 /importer:TextureImporter

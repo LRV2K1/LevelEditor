@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 
 class EntityButton : Button
 {
-    //button for entities
     protected EntityType entitytype;
     protected EnemyType enemytype;
     protected ItemType itemtype;
@@ -24,7 +23,7 @@ class EntityButton : Button
 
     public override void HandleInput(InputHelper inputHelper)
     {
-        //give information to the mouse
+
         base.HandleInput(inputHelper);
         if (pressed)
         {

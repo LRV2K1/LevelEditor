@@ -8,7 +8,6 @@ using Microsoft.Xna.Framework;
 
 class TileOverlay : GameObjectList
 {
-    //overlay to select tiles
     public TileOverlay(GameObjectLibrary gameworld, string path ,int layer = 101, string id = "")
         : base(layer, id)
     {
@@ -16,10 +15,17 @@ class TileOverlay : GameObjectList
         ReadFile(path);
     }
 
-    //get information from the file and make buttons
     private void ReadFile(string path)
     {
-        StreamReader streamReader = new StreamReader(path);
+        StreamReader streamReader;
+        try
+        {
+            streamReader = new StreamReader(path);
+        }
+        catch
+        {
+            return;
+        }
         string line = streamReader.ReadLine();
         int x = 20;
         while (line != "" && line != null)
@@ -31,7 +37,6 @@ class TileOverlay : GameObjectList
         streamReader.Close();
     }
 
-    //make buttons
     private void MakeButton(int x, string line)
     {
         string[] type = line.Split(',');

@@ -1,2 +1,4 @@
-Sprites/Enemy/spr_enemy_0@4,60,Enemy,Close
-Sprites/Enemy/spr_enemy_1@4,45,Enemy,Close
+Sprites/Enemy/Minotaur,60,Enemy,Close
+Sprites/Enemy/Skeleton,45,Enemy,Close
+Sprites/Enemy/Grave,45,Enemy,Close
+Sprites/Enemy/Zombie,45,Enemy,Close

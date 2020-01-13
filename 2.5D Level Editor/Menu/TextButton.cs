@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 class TextButton : TextGameObject
 {
-    //simple text button
     protected bool pressed;
     public TextButton(string assetname, string text, int layer = 101, string id = "")
         : base (assetname, layer, id)

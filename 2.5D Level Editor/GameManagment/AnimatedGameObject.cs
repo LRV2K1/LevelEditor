@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
+using System;
 
 public class AnimatedGameObject : SpriteGameObject
 {
@@ -11,7 +12,7 @@ public class AnimatedGameObject : SpriteGameObject
         animations = new Dictionary<string, Animation>();
     }
 
-    public void LoadAnimation(string assetName, string id, bool looping, 
+    public void LoadAnimation(string assetName, string id, bool looping = false, 
                               float frameTime = 0.1f)
     {
         Animation anim = new Animation(assetName, looping, frameTime);
@@ -20,17 +21,27 @@ public class AnimatedGameObject : SpriteGameObject
 
     public virtual void PlayAnimation(string id)
     {
-        if (sprite == animations[id])
+        if (!animations.ContainsKey(id) || sprite == animations[id])
         {
+            Console.WriteLine("Can't load anmination with key: " + id);
+            if (sprite == null)
+            {
+                LoadAnimation(GameEnvironment.AssetManager.TestSprite, "test");
+                PlayAnimation("test");
+                Console.WriteLine("Using test sprite");
+            }
             return;
         }
+        Color color = Color.White;
         if (sprite != null)
         {
             animations[id].Mirror = sprite.Mirror;
+            color = sprite.Color;
         }
         animations[id].Play();
         sprite = animations[id];
-        origin = new Vector2(sprite.Width / 2, sprite.Height / 2);        
+        sprite.Color = color;
+        origin = new Vector2(sprite.Width / 2, sprite.Height / 2);
     }
 
     public Animation GetAnimation(string id)

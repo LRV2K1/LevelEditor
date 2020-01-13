@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Content;
 
 public class SpriteSheet
 {
@@ -19,18 +20,17 @@ public class SpriteSheet
         this.assetname = assetname;
         size = Vector2.One;
         // retrieve the sprite
-        sprite = GameEnvironment.AssetManager.GetSprite(assetname);
-        color = Color.White;
-        // construct the collision mask
-        /*
-        Color[] colorData = new Color[sprite.Width * sprite.Height];
-        collisionMask = new bool[Sprite.Width * Sprite.Height];
-        sprite.GetData(colorData);
-        for (int i = 0; i < colorData.Length; ++i)
+        try
         {
-            collisionMask[i] = colorData[i].A != 0;
+            sprite = GameEnvironment.AssetManager.GetSprite(assetname);
         }
-        */
+        catch (ContentLoadException e)
+        {
+            assetname = GameEnvironment.AssetManager.TestSprite;
+            sprite = GameEnvironment.AssetManager.GetSprite(assetname);
+            throw new TestSpriteExeption();
+        }
+        color = Color.White;
 
         this.sheetIndex = sheetIndex;
         sheetColumns = 1;
@@ -64,15 +64,6 @@ public class SpriteSheet
         }
         spriteBatch.Draw(sprite, position, spritePart, color,
             0.0f, origin, size, spriteEffects, 0.0f);           
-    }
-
-    public bool IsTranslucent(int x, int y)
-    {
-        int column_index = sheetIndex % sheetColumns;
-        int row_index = sheetIndex / sheetColumns % sheetRows;
-
-        //return collisionMask[column_index * Width + x + (row_index * Height + y) * Sprite.Width];
-        return false;
     }
 
     public Texture2D Sprite
