@@ -41,6 +41,10 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Editor\LevelEditer.cs" />
+    <Compile Include="Editor\LevelEditorIO.cs" />
+    <Compile Include="Editor\LevelEditorLoop.cs" />
+    <Compile Include="Editor\LevelEditorStartup.cs" />
     <Compile Include="GameManagment\AnimatedGameObject.cs" />
     <Compile Include="GameManagment\Animation.cs" />
     <Compile Include="GameManagment\AssetManager.cs" />
